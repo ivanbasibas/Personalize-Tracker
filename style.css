@@ -269,15 +269,28 @@ th {
 .modal {
   height: 200px;
   width: 200px;
-  background-color: #f8fafc;
-  position: fixed;
-  right: 50%;
-  top: 50%;
-  transform: translate(50%, 50%);
-  display: none;
-  background-color: #000001;
+
+  background-color: #121e38;
 }
 
 .blur {
-  opacity: 0.1;
+  filter: blur(50px);
+  opacity: 0.7;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: #090f173f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+
+.hidden {
+  display: none;
+}
+.no-scroll {
+  overflow: hidden;
 }
