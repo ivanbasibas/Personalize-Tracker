@@ -147,9 +147,12 @@ li {
 .positive {
   color: green;
 }
-
 .neutral {
   color: rgb(78, 69, 158);
+}
+
+.icon-yellow {
+  background-color: #d5d500ba;
 }
 
 .icon-positive {
@@ -267,9 +270,6 @@ th {
 }
 
 .modal {
-  height: 200px;
-  width: 200px;
-
   background-color: #121e38;
 }
 
@@ -293,4 +293,35 @@ th {
 }
 .no-scroll {
   overflow: hidden;
+}
+
+.form-expense {
+  padding: 20px;
+}
+
+.row-form {
+  display: flex;
+  justify-content: start;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.column-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+form button {
+  padding: 6px 10px;
+  border-radius: 5px;
+  width: 70px;
+  color: #f8fafc;
+}
+
+.form-button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
 }

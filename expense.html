@@ -228,7 +228,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="expense-body-column">
+                <!-- <tr class="expense-body-column">
                   <td>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -271,7 +271,7 @@
                   <td>Meralco</td>
                   <td>July 12, 2026</td>
                   <td>1500</td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
           </div>
@@ -279,7 +279,45 @@
       </div>
     </div>
     <div class="modal-overlay hidden">
-      <div class="modal"></div>
+      <div class="modal component">
+        <form class="form form-expense">
+          <div class="row-form">
+            <div class="column-form">
+              <label>Category</label>
+              <select name="category">
+                <option value="Food and Drinking">Food and Drinking</option>
+                <option value="Transportation">Transportation</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Bill and Utilities">Bill and Utilities</option>
+                <option value="Entertainnment">Entertainnment</option>
+                <option value="Others">Others</option>
+              </select>
+            </div>
+            <div class="column-form">
+              <label>Description</label>
+              <input
+                name="description"
+                type="text"
+                placeholder="Name of restaurant"
+              />
+            </div>
+          </div>
+          <div class="row-form">
+            <div class="column-form">
+              <label>Date</label>
+              <input name="date" type="date" />
+            </div>
+            <div class="column-form">
+              <label>Amount</label>
+              <input name="amount" type="number" />
+            </div>
+          </div>
+          <div class="form-button-container">
+            <button class="form-button icon-positive add">Add</button>
+            <button class="form-button icon-negative cancel">Cancel</button>
+          </div>
+        </form>
+      </div>
     </div>
   </body>
 </html>
