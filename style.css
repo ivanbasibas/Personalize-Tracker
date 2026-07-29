@@ -302,7 +302,7 @@ th {
 .row-form {
   display: flex;
   justify-content: start;
-  gap: 30px;
+  gap: 60px;
   margin-bottom: 20px;
 }
 
@@ -324,4 +324,28 @@ form button {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
+}
+
+.column-form label {
+  font-size: 18px;
+}
+
+.column-form input,
+.column-form select {
+  padding: 8px;
+  border-radius: 10px;
+  width: 300px;
+  font-size: 18px;
+}
+
+.modal-header {
+  padding: 10px 20px;
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
 }

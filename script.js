@@ -71,7 +71,6 @@ const totalIncome = 6000;
 
 //Total-figure
 const incomeEl = document.querySelector(".income-figure");
-incomeEl.textContent = `₱${totalIncome.toFixed(2, 0)}`;
 
 //Budget Left computation
 const budgetLeft = function () {
@@ -89,11 +88,30 @@ const savingsRate = function () {
 //Saving figure
 const savingEl = document.querySelector(".savings-figure");
 
+//Budget title
+const budgetTitleEl = document.querySelector(".budget-title");
+
+//get actual figure function
+const getActualFigure = function (el) {
+  return +el.textContent.replace(/,/g, "").replace("₱", "").replace("%", "");
+};
+
 //UPDATE DASHBOARD
 const updateDashboard = function () {
   expenseAmountEl.textContent = `₱${totalExpense().toFixed(2, 0)}`;
   budgetLeftEl.textContent = `₱${budgetLeft(totalIncome).toFixed(2, 0)}`;
   savingEl.textContent = `${savingsRate()}%`;
+  incomeEl.textContent = `₱${totalIncome.toFixed(2, 0)}`;
+
+  if (getActualFigure(budgetLeftEl) < 0) {
+    budgetLeftEl.classList.add("negative");
+    budgetTitleEl.textContent = "Budget Deficit";
+    budgetTitleEl.classList.add("negative");
+  }
+
+  if (getActualFigure(savingEl) < 0) {
+    savingEl.classList.add("negative");
+  }
 };
 
 updateDashboard();
@@ -185,8 +203,16 @@ expenseButtonContainer.addEventListener("click", function (e) {
     let description = form.description.value;
     let date = form.date.value;
 
-    if (!category || !amount || !description || !date)
-      throw new Error("INVALID INPUT");
+    if (!category || !amount || !description || !date) {
+      alert("Invalid Input");
+      return;
+    }
+
+    if (Math.abs(amount) > getActualFigure(budgetLeftEl)) {
+      confirm(
+        "Are you sure to add this expense? You're budget left will be negative!",
+      );
+    }
 
     expenses.push({
       icon: iconIndex,
@@ -196,7 +222,6 @@ expenseButtonContainer.addEventListener("click", function (e) {
       date: date,
     });
 
-    console.log(expenses);
     tableBody.innerHTML = "";
     renderExpense();
     updateDashboard();
