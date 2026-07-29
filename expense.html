@@ -280,46 +280,86 @@
     </div>
     <div class="modal-overlay hidden">
       <div class="modal component">
-        <div class="center">
-          <p class="modal-header">Expense</p>
+        <div class="modal-expense">
+          <div class="center">
+            <p class="modal-header">Expense</p>
+          </div>
+          <form class="form form-expense">
+            <div class="row-form">
+              <div class="column-form">
+                <label>Category</label>
+                <select name="category">
+                  <option value="Food and Drinking">Food and Drinking</option>
+                  <option value="Transportation">Transportation</option>
+                  <option value="Shopping">Shopping</option>
+                  <option value="Bill and Utilities">Bill and Utilities</option>
+                  <option value="Entertainnment">Entertainnment</option>
+                  <option value="Others">Others</option>
+                </select>
+              </div>
+              <div class="column-form">
+                <label>Description</label>
+                <input
+                  name="description"
+                  type="text"
+                  placeholder="Name of restaurant"
+                />
+              </div>
+            </div>
+            <div class="row-form">
+              <div class="column-form">
+                <label>Date</label>
+                <input name="date" type="date" />
+              </div>
+              <div class="column-form">
+                <label>Amount</label>
+                <input name="amount" type="number" />
+              </div>
+            </div>
+            <div class="form-button-container">
+              <button class="form-button icon-positive add">Add</button>
+              <button class="form-button icon-negative cancel">Cancel</button>
+            </div>
+          </form>
         </div>
-        <form class="form form-expense">
-          <div class="row-form">
-            <div class="column-form">
-              <label>Category</label>
-              <select name="category">
-                <option value="Food and Drinking">Food and Drinking</option>
-                <option value="Transportation">Transportation</option>
-                <option value="Shopping">Shopping</option>
-                <option value="Bill and Utilities">Bill and Utilities</option>
-                <option value="Entertainnment">Entertainnment</option>
-                <option value="Others">Others</option>
-              </select>
+        <div class="modal-confirmation hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="modal-expe-icon component"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <p>Over budget</p>
+          <p>This expense will exceed your remaining budget.</p>
+          <div class="confirmation-summary">
+            <div class="confirmation-column">
+              <p>Remaining Budget</p>
+              <strong>200</strong>
             </div>
-            <div class="column-form">
-              <label>Description</label>
-              <input
-                name="description"
-                type="text"
-                placeholder="Name of restaurant"
-              />
+            <div class="confirmation-column">
+              <p>Expense Amount</p>
+              <strong>200</strong>
             </div>
-          </div>
-          <div class="row-form">
-            <div class="column-form">
-              <label>Date</label>
-              <input name="date" type="date" />
-            </div>
-            <div class="column-form">
-              <label>Amount</label>
-              <input name="amount" type="number" />
+            <div class="confirmation-column">
+              <p>Budget</p>
+              <strong>200</strong>
             </div>
           </div>
-          <div class="form-button-container">
-            <button class="form-button icon-positive add">Add</button>
-            <button class="form-button icon-negative cancel">Cancel</button>
+          <div class="confirmation-column">
+            <a class="confirmation-button icon-neutral confirm-cancel"
+              >Cancel</a
+            >
+            <a class="confirmation-button icon-negative confirm-add"
+              >Add Anyway</a
+            >
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </body>

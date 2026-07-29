@@ -288,9 +288,6 @@ th {
   backdrop-filter: blur(8px);
 }
 
-.hidden {
-  display: none;
-}
 .no-scroll {
   overflow: hidden;
 }
@@ -348,4 +345,49 @@ form button {
 .center {
   display: flex;
   justify-content: center;
+}
+
+.modal-expe-icon {
+  height: 48px;
+  width: 48px;
+  fill: #d5d500ba;
+  background-color: #121e38;
+}
+.modal-confirmation {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.confirmation-summary {
+  align-self: stretch;
+  background-color: #090f17;
+  border: 2px solid #090f17;
+  border-radius: 18px;
+}
+
+.confirmation-column {
+  width: 100%;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #121e38;
+}
+
+.confirmation-column:last-child {
+  border: none;
+}
+
+.confirmation-button {
+  width: 130px;
+  display: flex;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 15px;
+}
+
+.hidden {
+  display: none;
 }
