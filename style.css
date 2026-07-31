@@ -283,6 +283,8 @@ th {
   inset: 0;
   background-color: #090f173f;
   display: flex;
+  flex-direction: column;
+  gap: 20px;
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(8px);
@@ -348,8 +350,8 @@ form button {
 }
 
 .modal-expe-icon {
-  height: 48px;
-  width: 48px;
+  height: 64px;
+  width: 64px;
   fill: #d5d500ba;
   background-color: #121e38;
 }
@@ -388,6 +390,16 @@ form button {
   border-radius: 15px;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .hidden {
   display: none;
+}
+
+.err-msg {
+  font-size: 18px;
+  padding: 10px 20px;
+  font-weight: 500;
 }

@@ -278,7 +278,13 @@
         </section>
       </div>
     </div>
+
     <div class="modal-overlay hidden">
+      <div class="err-msg-container component invisible">
+        <p class="err-msg negative">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        </p>
+      </div>
       <div class="modal component">
         <div class="modal-expense">
           <div class="center">
@@ -335,7 +341,7 @@
               clip-rule="evenodd"
             />
           </svg>
-          <p>Over budget</p>
+          <h2>Over budget</h2>
           <p>This expense will exceed your remaining budget.</p>
           <div class="confirmation-summary">
             <div class="confirmation-column">
@@ -347,11 +353,11 @@
               <strong>200</strong>
             </div>
             <div class="confirmation-column">
-              <p>Budget</p>
+              <p>Budget After</p>
               <strong>200</strong>
             </div>
           </div>
-          <div class="confirmation-column">
+          <div class="confirmation-column confirmation-button-container">
             <a class="confirmation-button icon-neutral confirm-cancel"
               >Cancel</a
             >

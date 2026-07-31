@@ -1,4 +1,6 @@
 "use strict";
+
+//Icon List
 const expenseIcons = [
   `<svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -55,38 +57,57 @@ const renderCalendar = function () {
 
   calendar.render();
 };
-
 renderCalendar();
 
-const addExpenseButton = document.querySelector("#addExpense");
+//get element
+const getEl = function (classIdElement) {
+  return document.querySelector(classIdElement);
+};
 
-addExpenseButton.addEventListener("click", function (e) {
+const element = {
+  expenseAmount: getEl(".total-figure"),
+  addExpenseButton: getEl("#addExpense"),
+  overlay: getEl(".modal-overlay"),
+  income: getEl(".income-figure"),
+  saving: getEl(".savings-figure"),
+  budgetLeft: getEl(".budget-figure"),
+  budgetTitle: getEl(".budget-title"),
+  modalExpense: getEl(".modal-expense"),
+  modalConfirm: getEl(".modal-confirmation"),
+  confirmationCancel: getEl(".confirm-cancel"),
+  confirmationButtonContainer: getEl(".confirmation-button-container"),
+  tableBody: getEl("tbody"),
+  expenseButtonContainer: getEl(".form-button-container"),
+  errMsg: getEl(".err-msg"),
+  errMsgContainer: getEl(".err-msg-container"),
+};
+
+console.log(element.errMsg, element.errMsgContainer);
+//Make overlay and modal visible
+element.addExpenseButton.addEventListener("click", function (e) {
   e.preventDefault();
-  document.querySelector(".modal-overlay").classList.remove("hidden");
+  element.overlay.classList.remove("hidden");
   document.body.classList.add("no-scroll");
 });
 
-const overlay = document.querySelector(".modal-overlay");
-
+//Make overlay and modal hidden
 const hideModal = function () {
-  document.querySelector(".modal-overlay").classList.add("hidden");
+  element.overlay.classList.add("hidden");
   document.body.classList.remove("no-scroll");
 };
 
 const closeModal = function () {
-  if (!overlay) return;
-  overlay.addEventListener("click", function (e) {
+  element.overlay.addEventListener("click", function (e) {
     if (e.target.classList.contains("modal-overlay")) {
       hideModal();
     }
   });
 };
-
 closeModal();
 
 const toggleConfirmModal = function () {
-  modalExpense.classList.toggle("hidden");
-  modalConfirm.classList.toggle("hidden");
+  element.modalExpense.classList.toggle("hidden");
+  element.modalConfirm.classList.toggle("hidden");
 };
 
 const expenses = [
@@ -104,40 +125,18 @@ const totalExpense = function () {
   return Math.abs(expenses.reduce((acc, expense) => acc + expense.amount, 0));
 };
 
-//Expense  figure
-const expenseAmountEl = document.querySelector(".total-figure");
-
 //Total Income
 const totalIncome = 6000;
-
-//Total-figure
-const incomeEl = document.querySelector(".income-figure");
 
 //Budget Left computation
 const budgetLeft = function () {
   return totalIncome - totalExpense();
 };
 
-//Budget figure
-const budgetLeftEl = document.querySelector(".budget-figure");
-
 //Savings Rate
 const savingsRate = function () {
   return Math.floor((budgetLeft() / totalIncome) * 100);
 };
-
-//Saving figure
-const savingEl = document.querySelector(".savings-figure");
-
-//Budget title
-const budgetTitleEl = document.querySelector(".budget-title");
-
-//modal expense content element
-const modalExpense = document.querySelector(".modal-expense");
-
-//modal confirmation element
-const modalConfirm = document.querySelector(".modal-confirmation");
-console.log(modalConfirm);
 
 //get actual figure function
 const getActualFigure = function (el) {
@@ -146,24 +145,24 @@ const getActualFigure = function (el) {
 
 //UPDATE DASHBOARD
 const updateDashboard = function () {
-  expenseAmountEl.textContent = `₱${totalExpense().toFixed(2, 0)}`;
-  budgetLeftEl.textContent = `₱${budgetLeft(totalIncome).toFixed(2, 0)}`;
-  savingEl.textContent = `${savingsRate()}%`;
-  incomeEl.textContent = `₱${totalIncome.toFixed(2, 0)}`;
+  element.expenseAmount.textContent = `₱${totalExpense().toFixed(2, 0)}`;
+  element.budgetLeft.textContent = `₱${budgetLeft(totalIncome).toFixed(2, 0)}`;
+  element.saving.textContent = `${savingsRate()}%`;
+  element.income.textContent = `₱${totalIncome.toFixed(2, 0)}`;
 
-  if (getActualFigure(budgetLeftEl) < 0) {
-    budgetLeftEl.classList.add("negative");
-    budgetTitleEl.textContent = "Budget Deficit";
-    budgetTitleEl.classList.add("negative");
+  if (getActualFigure(element.budgetLeft) < 0) {
+    element.budgetLeft.classList.add("negative");
+    element.budgetTitle.textContent = "Budget Deficit";
+    element.budgetTitle.classList.add("negative");
   }
 
-  if (getActualFigure(savingEl) < 0) {
-    savingEl.classList.add("negative");
+  if (getActualFigure(element.saving) < 0) {
+    element.saving.classList.add("negative");
   }
 };
 
 updateDashboard();
-const tableBody = document.querySelector("tbody");
+
 const renderExpense = function () {
   expenses.forEach((expense) => {
     const html = `<tr class="expense-body-column">
@@ -177,17 +176,22 @@ const renderExpense = function () {
                 </tr>
                 `;
 
-    tableBody.insertAdjacentHTML("beforeend", html);
+    element.tableBody.insertAdjacentHTML("beforeend", html);
   });
 };
 
 renderExpense();
 
-//Expense form button
-const expenseButtonContainer = document.querySelector(".form-button-container");
-const expenseButton = document.querySelectorAll(".form-button");
+//Render Message function
+const renderMsg = function (msg) {
+  element.errMsg.textContent = msg;
+  element.errMsgContainer.classList.remove("invisible");
+  setTimeout(() => {
+    element.errMsgContainer.classList.add("invisible");
+  }, 2500);
+};
 
-expenseButtonContainer.addEventListener("click", function (e) {
+element.expenseButtonContainer.addEventListener("click", function (e) {
   e.preventDefault();
 
   const buttonClicked = e.target.closest(".form-button");
@@ -215,11 +219,11 @@ expenseButtonContainer.addEventListener("click", function (e) {
     let date = form.date.value;
 
     if (!category || !amount || !description || !date) {
-      alert("Invalid Input");
+      renderMsg("Invalid Input");
       return;
     }
 
-    if (Math.abs(amount) > getActualFigure(budgetLeftEl)) {
+    if (Math.abs(amount) > getActualFigure(element.budgetLeft)) {
       toggleConfirmModal();
       return;
     }
@@ -232,7 +236,7 @@ expenseButtonContainer.addEventListener("click", function (e) {
       date: date,
     });
 
-    tableBody.innerHTML = "";
+    element.tableBody.innerHTML = "";
     renderExpense();
     updateDashboard();
     form.category.value =
@@ -242,4 +246,12 @@ expenseButtonContainer.addEventListener("click", function (e) {
         "";
     hideModal();
   }
+});
+
+//Canceling the confirmation modal
+element.confirmationButtonContainer.addEventListener("click", function (e) {
+  const clicked = e.target.closest(".confirmation-button");
+  if (!clicked) return;
+
+  if (clicked.classList.contains("confirm-cancel")) toggleConfirmModal();
 });
