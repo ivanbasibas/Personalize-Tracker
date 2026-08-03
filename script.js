@@ -1,5 +1,6 @@
 "use strict";
 import { expenseIcons } from "./icon.js";
+import { renderChart } from "./chart.js";
 
 const renderCalendar = function () {
   const calendarEl = document.getElementById("calendar");
@@ -107,7 +108,7 @@ const totalExpense = function () {
 };
 
 //Total Income
-const totalIncome = 6000;
+const totalIncome = 15000;
 
 //Budget Left computation
 const budgetLeft = function () {
@@ -249,3 +250,5 @@ element.confirmationButtonContainer.addEventListener("click", function (e) {
     element.modalConfirm.classList.add("hidden");
   }
 });
+
+renderChart(expenses);

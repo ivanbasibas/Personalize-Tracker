@@ -8,6 +8,7 @@
       href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.css"
       rel="stylesheet"
     />
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js"
@@ -210,7 +211,10 @@
             </div>
           </div>
         </section>
-        <section></section>
+        <section class="expense-second">
+          <canvas id="expenseChart"></canvas>
+          <canvas></canvas>
+        </section>
         <section class="expense-third">
           <div class="component">
             <div class="transaction-header-component">

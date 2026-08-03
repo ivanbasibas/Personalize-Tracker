@@ -403,3 +403,9 @@ form button {
   padding: 10px 20px;
   font-weight: 500;
 }
+
+.expense-second {
+  width: 350px;
+  height: 350px;
+  margin: 0 auto;
+}
