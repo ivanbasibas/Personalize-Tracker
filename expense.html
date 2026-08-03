@@ -13,7 +13,7 @@
       src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js"
     ></script>
     <link rel="stylesheet" href="style.css" />
-    <script defer src="script.js"></script>
+    <script type="module" src="script.js"></script>
   </head>
   <body>
     <div class="main">
@@ -280,13 +280,13 @@
     </div>
 
     <div class="modal-overlay hidden">
-      <div class="err-msg-container component invisible">
-        <p class="err-msg negative">
+      <div class="status-msg-container component invisible">
+        <p class="status-msg">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit.
         </p>
       </div>
       <div class="modal component">
-        <div class="modal-expense">
+        <div class="modal-expense hidden">
           <div class="center">
             <p class="modal-header">Expense</p>
           </div>

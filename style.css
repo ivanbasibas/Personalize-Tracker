@@ -398,7 +398,7 @@ form button {
   display: none;
 }
 
-.err-msg {
+.status-msg {
   font-size: 18px;
   padding: 10px 20px;
   font-weight: 500;
