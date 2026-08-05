@@ -1,6 +1,6 @@
 "use strict";
 import { expenseIcons } from "./icon.js";
-import { renderChart } from "./chart.js";
+import { renderChart, renderChart2 } from "./chart.js";
 
 const renderCalendar = function () {
   const calendarEl = document.getElementById("calendar");
@@ -122,10 +122,10 @@ const savingsRate = function () {
 
 //UPDATE DASHBOARD
 const updateDashboard = function () {
-  element.expenseAmount.textContent = `₱${totalExpense().toFixed(2, 0)}`;
-  element.budgetLeft.textContent = `₱${budgetLeft().toFixed(2, 0)}`;
+  element.expenseAmount.textContent = `₱${totalExpense().toFixed(2)}`;
+  element.budgetLeft.textContent = `₱${budgetLeft().toFixed(2)}`;
   element.saving.textContent = `${savingsRate()}%`;
-  element.income.textContent = `₱${totalIncome.toFixed(2, 0)}`;
+  element.income.textContent = `₱${totalIncome.toFixed(2)}`;
 
   if (budgetLeft() < 0) {
     element.budgetLeft.classList.add("negative");
@@ -176,7 +176,6 @@ const renderStatus = function (msg, color) {
 };
 
 const addExpenseSuccessful = function () {
-  renderStatus("Added", "green");
   addExpense(
     exValue.iconIndex,
     exValue.amount,
@@ -189,6 +188,9 @@ const addExpenseSuccessful = function () {
   updateDashboard();
   setTimeout(hideModal, 1000);
   element.form.reset();
+  renderChart(expenses);
+  renderChart2(expenses);
+  renderStatus("Added", "green");
 };
 
 element.expenseButtonContainer.addEventListener("click", function (e) {
@@ -252,3 +254,4 @@ element.confirmationButtonContainer.addEventListener("click", function (e) {
 });
 
 renderChart(expenses);
+renderChart2(expenses);

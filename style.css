@@ -30,7 +30,8 @@ body {
 
 .expense-container {
   grid-template-columns: auto 1fr;
-  grid-template-rows: 1fr 1fr auto;
+  grid-template-rows: auto 1fr auto;
+  row-gap: 40px;
 }
 
 .component {
@@ -404,8 +405,18 @@ form button {
   font-weight: 500;
 }
 
-.expense-second {
-  width: 350px;
+.chart {
   height: 350px;
-  margin: 0 auto;
+  width: 600px;
+  /* padding: 20px; */
+}
+
+.expense-second {
+  display: flex;
+  justify-content: space-between;
+}
+
+#expenseChartLeft,
+#expenseChartRight {
+  padding: 20px;
 }
