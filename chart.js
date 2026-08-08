@@ -53,7 +53,6 @@ export const renderChart = function (expenses) {
               "#A78BFA",
               "#94A3B8",
             ],
-            git,
           },
         ],
       },
