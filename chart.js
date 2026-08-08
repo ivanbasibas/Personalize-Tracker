@@ -3,6 +3,24 @@ let expenseChartRight;
 let expenseChartLeft;
 
 export const renderChart = function (expenses) {
+  const chart = document.querySelector("#expenseChartRight");
+  if (expenses.length === 0) {
+    chart.classList.add("hidden");
+
+    const html = `<h2 class="no-data component">No Data Available</h2>`;
+
+    chart.parentElement.insertAdjacentHTML("beforeend", html);
+
+    return;
+  }
+
+  chart.classList.remove("hidden");
+  const noData = document.querySelector(".no-data");
+
+  if (noData) {
+    noData.remove();
+  }
+
   const total = expenses.reduce((acc, expense) => {
     if (!acc[expense.category]) {
       acc[expense.category] = 0;
@@ -18,9 +36,8 @@ export const renderChart = function (expenses) {
   console.log(allValues);
   console.log(allLabels);
 
-  const canvasRight = document.querySelector("#expenseChartRight");
   if (!expenseChartRight) {
-    expenseChartRight = new Chart(canvasRight, {
+    expenseChartRight = new Chart(chart, {
       type: "doughnut",
       data: {
         labels: allLabels,
