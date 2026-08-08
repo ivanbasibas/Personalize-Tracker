@@ -45,6 +45,9 @@ const element = {
   statusMsg: getEl(".status-msg"),
   statusMsgContainer: getEl(".status-msg-container"),
   form: getEl(".form"),
+  remainingBudget: getEl(".remaining-budget"),
+  curExpenseAmount: getEl(".expense-amount"),
+  budgetAfter: getEl(".budget-after"),
 };
 
 const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
@@ -231,6 +234,9 @@ element.expenseButtonContainer.addEventListener("click", function (e) {
     }
 
     if (Math.abs(exValue.amount) > budgetLeft()) {
+      element.remainingBudget.textContent = budgetLeft();
+      element.curExpenseAmount.textContent = Math.abs(exValue.amount);
+      element.budgetAfter.textContent = budgetLeft() - Math.abs(exValue.amount);
       toggleConfirmModal();
       return;
     }
